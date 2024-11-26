@@ -10,14 +10,12 @@ import {RequireWithMessage} from "../src/RequireWithMessage.sol";
 import {CustomErrorWithRequire} from "../src/CustomErrorWithRequire.sol";
 import {CustomErrorNoParams} from "../src/CustomErrorsWithNoParams.sol";
 
-
 contract Benchmark is Test {
     BareRequire bareRequire;
     CustomError customError;
     RequireWithMessage requireWithMessage;
     CustomErrorWithRequire customErrorWithRequire;
     CustomErrorNoParams customErrorNoParams;
-
 
     function setUp() public {
         vm.startBroadcast();
@@ -49,7 +47,6 @@ contract Benchmark is Test {
         requireWithMessage.benchmark();
         vm.expectRevert();
         customErrorNoParams.benchmark();
-        
     }
 
     function testBytecodeSize() public view {
@@ -60,4 +57,3 @@ contract Benchmark is Test {
         contractSize(address(customErrorNoParams), "CustomErrorNoParams");
     }
 }
-

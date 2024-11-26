@@ -6,11 +6,9 @@ contract RequireWithMessage {
 
     function transfer(uint256 amount) public view {
         require(BALANCE >= amount, "Insufficient balance");
-       
     }
 
     function benchmark() public view {
-
         transfer(2 ether);
     }
 }

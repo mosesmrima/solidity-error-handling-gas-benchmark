@@ -1,6 +1,8 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
+
 import {console} from "forge-std/Script.sol";
+
 contract CustomErrorWithRequire {
     error InsufficientBalance(uint256 available, uint256 required);
 
