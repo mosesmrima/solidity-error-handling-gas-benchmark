@@ -6,13 +6,12 @@ This repository provides a benchmark comparison of various error-handling techni
 ## Table of Contents
 - [Overview](#overview)
 - [Techniques Compared](#techniques-compared)
-- [Findings](#findings)
-- [Visualizations](#visualizations)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
 - [Running Tests](#running-tests)
 - [Results](#results)
+- [Visualizations](#visualizations)
 - [Caveats](#caveats)
 - [Recommendations](#recommendations)
 - [License](#license)
@@ -28,27 +27,7 @@ The following techniques were benchmarked:
 4. **Custom Error with Require**: Combines `require` with a custom error type.
 5. **Custom Error without Parameters**: Custom error with no additional parameters.
 
-## Findings
-![corelation to bytecode size](bytecode.png)
-![corelation to gas used](gas.png)
-![cumulative bytecode size and gas ](cumulative.png)
 
-## Recommendations
-
-**For Efficiency:**  
-- `Custom errors with no parameters` for simple checks: When you need to handle errors efficiently, custom errors with no parameters are a great option since you can get descriptive with the custom error name.
-
-- `require` with no message: This method is the most gas-efficient when performing simple checks. It doesn’t involve any extra data, such as a custom error message, reducing both gas and bytecode size. How ever this is discourage since it doesn't prvide any context on the error therefore not recomended on production codebases.
-
-**For Debugging:**  
-- `Custom errors with parameters` for more context: For more complex scenarios or when you need additional context during debugging, custom errors with parameters are an excellent choice. They provide relevant details, which can help with troubleshooting and understanding failure conditions.
-
-**Avoid:**  
-- `require with custom message strings`: Although helpful for debugging, `require` with custom message strings is less efficient due to the additional gas cost required to store and handle the message strings. These should be avoided in favor of custom errors or simple `require` statements when efficiency is a priority.
-
-## Visualizations
-
-For a detailed breakdown and visualizations of the benchmarking data, refer to the [visualization notebook](./benchmark_visualizations.ipynb).
 
 ## Getting Started
 
@@ -75,12 +54,30 @@ forge test --gas-report
 
 ## Results
 The results from these tests provide a relative comparison of gas efficiency across the error-handling methods.
+![corelation to bytecode size](bytecode.png)
+![corelation to gas used](gas.png)
+![cumulative bytecode size and gas ](cumulative.png)
+
+## Visualizations
+
+For a detailed breakdown and visualizations of the benchmarking data, refer to the [visualization notebook](./benchmark_visualizations.ipynb).
 
 ## Caveats
 These benchmarking tests are conducted in a simulated Foundry Anvil environment, which doesn’t account for real-world gas price variations across different blockchain networks. The results provide relative comparisons in a controlled environment but may differ slightly on actual chains with dynamic pricing models.
 
 ## Recommendations
 For optimal gas efficiency, developers should consider the trade-offs of each error-handling technique. In general, custom errors without parameters tend to be the most gas-efficient for cases where additional context is not needed.
+
+**For Efficiency:**  
+- `Custom errors with no parameters` for simple checks: When you need to handle errors efficiently, custom errors with no parameters are a great option since you can get descriptive with the custom error name.
+
+- `require` with no message: This method is the most gas-efficient when performing simple checks. It doesn’t involve any extra data, such as a custom error message, reducing both gas and bytecode size. How ever this is discourage since it doesn't prvide any context on the error therefore not recomended on production codebases.
+
+**For Debugging:**  
+- `Custom errors with parameters` for more context: For more complex scenarios or when you need additional context during debugging, custom errors with parameters are an excellent choice. They provide relevant details, which can help with troubleshooting and understanding failure conditions.
+
+**Avoid:**  
+- `require with custom message strings`: Although helpful for debugging, `require` with custom message strings is less efficient due to the additional gas cost required to store and handle the message strings. These should be avoided in favor of custom errors or simple `require` statements when efficiency is a priority.
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
