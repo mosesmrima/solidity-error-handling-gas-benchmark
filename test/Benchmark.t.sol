@@ -7,14 +7,12 @@ import {console} from "forge-std/Script.sol";
 import {BareRequire} from "../src/BareRequire.sol";
 import {CustomError} from "../src/CustomError.sol";
 import {RequireWithMessage} from "../src/RequireWithMessage.sol";
-import {CustomErrorWithRequire} from "../src/CustomErrorWithRequire.sol";
 import {CustomErrorNoParams} from "../src/CustomErrorsWithNoParams.sol";
 
 contract Benchmark is Test {
     BareRequire bareRequire;
     CustomError customError;
     RequireWithMessage requireWithMessage;
-    CustomErrorWithRequire customErrorWithRequire;
     CustomErrorNoParams customErrorNoParams;
 
     function setUp() public {
@@ -22,7 +20,6 @@ contract Benchmark is Test {
         bareRequire = new BareRequire();
         customError = new CustomError();
         requireWithMessage = new RequireWithMessage();
-        customErrorWithRequire = new CustomErrorWithRequire();
         customErrorNoParams = new CustomErrorNoParams();
         vm.stopBroadcast();
     }
@@ -42,8 +39,6 @@ contract Benchmark is Test {
         vm.expectRevert();
         customError.benchmark();
         vm.expectRevert();
-        customErrorWithRequire.benchmark();
-        vm.expectRevert();
         requireWithMessage.benchmark();
         vm.expectRevert();
         customErrorNoParams.benchmark();
@@ -52,7 +47,6 @@ contract Benchmark is Test {
     function testBytecodeSize() public view {
         contractSize(address(bareRequire), "BareRequire");
         contractSize(address(customError), "CustomError");
-        contractSize(address(customErrorWithRequire), "CustomErrorWithRequire");
         contractSize(address(requireWithMessage), "RequireWithMessage");
         contractSize(address(customErrorNoParams), "CustomErrorNoParams");
     }

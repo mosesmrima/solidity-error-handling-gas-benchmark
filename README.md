@@ -14,6 +14,7 @@ This repository provides a benchmark comparison of various error-handling techni
 - [Visualizations](#visualizations)
 - [Caveats](#caveats)
 - [Recommendations](#recommendations)
+- [Video Demo](#video-demo)
 - [License](#license)
 
 ## Overview
@@ -24,8 +25,7 @@ The following techniques were benchmarked:
 1. **Bare `require` Statement**: Basic error check with no additional information.
 2. **Require with Error Message**: Standard `require` with a message that is returned on failure.
 3. **Custom Error with Parameters**: Custom error that provides contextual information on failure.
-4. **Custom Error with Require**: Combines `require` with a custom error type.
-5. **Custom Error without Parameters**: Custom error with no additional parameters.
+4. **Custom Error without Parameters**: Custom error with no additional parameters.
 
 
 
@@ -79,5 +79,8 @@ For optimal gas efficiency, developers should consider the trade-offs of each er
 **Avoid:**  
 - `require with custom message strings`: Although helpful for debugging, `require` with custom message strings is less efficient due to the additional gas cost required to store and handle the message strings. These should be avoided in favor of custom errors or simple `require` statements when efficiency is a priority.
 
+
+## Video Demo 
+[Demo](https://www.loom.com/share/64cdfb7f364446aebae44e5d01633afe?sid=b056719e-5dbb-4ab1-b0b7-518973b4e11c)
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
