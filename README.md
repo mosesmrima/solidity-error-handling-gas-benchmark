@@ -41,7 +41,7 @@ foundryup
 ### Installation
 Clone the repository and install dependencies.
 ```bash
-git clone <repository-url>
+git clone https://github.com/mosesmrima/solidity-error-handling-gas-benchmark
 cd solidity-error-handling-gas-benchmark
 forge install
 ```
